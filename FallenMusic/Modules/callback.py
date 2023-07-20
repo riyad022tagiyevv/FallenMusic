@@ -1,29 +1,12 @@
-# MIT License
-#
-# Copyright (c) 2023 AnonymousX1025
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+
+
+
+
 
 from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 from pytgcalls.types import AudioPiped, HighQualityAudio
-
+ 
 from FallenMusic import (
     ASS_ID,
     ASS_NAME,
@@ -51,8 +34,8 @@ from FallenMusic.Helpers.inline import (
     helpmenu,
     pm_buttons,
 )
-
-
+ 
+ 
 @app.on_callback_query(filters.regex("forceclose"))
 async def close_(_, CallbackQuery):
     callback_data = CallbackQuery.data.strip()
@@ -61,7 +44,7 @@ async def close_(_, CallbackQuery):
     if CallbackQuery.from_user.id != int(user_id):
         try:
             return await CallbackQuery.answer(
-                "» ɪᴛ'ʟʟ ʙᴇ ʙᴇᴛᴛᴇʀ ɪғ ʏᴏᴜ sᴛᴀʏ ɪɴ ʏᴏᴜʀ ʟɪᴍɪᴛs ʙᴀʙʏ.", show_alert=True
+                "Həddində olsanız daha yaxşı olar", show_alert=True
             )
         except:
             return
@@ -70,8 +53,8 @@ async def close_(_, CallbackQuery):
         await CallbackQuery.answer()
     except:
         return
-
-
+ 
+ 
 @app.on_callback_query(filters.regex("close"))
 async def forceclose_command(_, CallbackQuery):
     try:
@@ -82,8 +65,8 @@ async def forceclose_command(_, CallbackQuery):
         await CallbackQuery.answer()
     except:
         pass
-
-
+ 
+ 
 @app.on_callback_query(filters.regex(pattern=r"^(resume_cb|pause_cb|skip_cb|end_cb)$"))
 @admin_check_cb
 async def admin_cbs(_, query: CallbackQuery):
@@ -91,33 +74,33 @@ async def admin_cbs(_, query: CallbackQuery):
         await query.answer()
     except:
         pass
-
+ 
     data = query.matches[0].group(1)
-
+ 
     if data == "resume_cb":
         if await is_streaming(query.message.chat.id):
             return await query.answer(
-                "ᴅɪᴅ ʏᴏᴜ ʀᴇᴍᴇᴍʙᴇʀ ᴛʜᴀᴛ ʏᴏᴜ ᴘᴀᴜsᴇᴅ ᴛʜᴇ sᴛʀᴇᴀᴍ ?", show_alert=True
+                "Yadda saxlamısınız ki, yayımı dayandırdınız ?", show_alert=True
             )
         await stream_on(query.message.chat.id)
         await pytgcalls.resume_stream(query.message.chat.id)
         await query.message.reply_text(
-            text=f"➻ sᴛʀᴇᴀᴍ ʀᴇsᴜᴍᴇᴅ 💫\n│ \n└ʙʏ : {query.from_user.mention} 🥀",
+            text=f"{query.from_user.mention} **tərəfindən davam edildi**",
             reply_markup=close_key,
         )
-
+ 
     elif data == "pause_cb":
         if not await is_streaming(query.message.chat.id):
             return await query.answer(
-                "ᴅɪᴅ ʏᴏᴜ ʀᴇᴍᴇᴍʙᴇʀ ᴛʜᴀᴛ ʏᴏᴜ ʀᴇsᴜᴍᴇᴅ ᴛʜᴇ sᴛʀᴇᴀᴍ ?", show_alert=True
+                "Yadınızdadırsa, yayımı davam etdirdiniz ?", show_alert=True
             )
         await stream_off(query.message.chat.id)
         await pytgcalls.pause_stream(query.message.chat.id)
         await query.message.reply_text(
-            text=f"➻ sᴛʀᴇᴀᴍ ᴩᴀᴜsᴇᴅ 🥺\n│ \n└ʙʏ : {query.from_user.mention} 🥀",
+            text=f"{query.from_user.mention} **tərəfindən saxlanıldı**",
             reply_markup=close_key,
         )
-
+ 
     elif data == "end_cb":
         try:
             await _clear_(query.message.chat.id)
@@ -125,11 +108,11 @@ async def admin_cbs(_, query: CallbackQuery):
         except:
             pass
         await query.message.reply_text(
-            text=f"➻ sᴛʀᴇᴀᴍ ᴇɴᴅᴇᴅ/sᴛᴏᴩᴩᴇᴅ ❄\n│ \n└ʙʏ : {query.from_user.mention} 🥀",
+            text=f"{query.from_user.mention} **tərəfindən dayandırıldı**",
             reply_markup=close_key,
         )
         await query.message.delete()
-
+ 
     elif data == "skip_cb":
         get = fallendb.get(query.message.chat.id)
         if not get:
@@ -137,7 +120,7 @@ async def admin_cbs(_, query: CallbackQuery):
                 await _clear_(query.message.chat.id)
                 await pytgcalls.leave_group_call(query.message.chat.id)
                 await query.message.reply_text(
-                    text=f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🥺\n│ \n└ʙʏ : {query.from_user.mention} 🥀\n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {query.message.chat.title}, **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**",
+                    text=f"{query.from_user.mention} **tərəfindən dayandırıldı**\n\n**Növbə də musiqi yoxdur.** {query.message.chat.title}, **Səsli söhbəti tərk edir.**",
                     reply_markup=close_key,
                 )
                 return await query.message.delete()
@@ -151,7 +134,7 @@ async def admin_cbs(_, query: CallbackQuery):
             req_by = get[0]["req"]
             user_id = get[0]["user_id"]
             get.pop(0)
-
+ 
             stream = AudioPiped(file_path, audio_parameters=HighQualityAudio())
             try:
                 await pytgcalls.change_stream(
@@ -162,19 +145,19 @@ async def admin_cbs(_, query: CallbackQuery):
                 LOGGER.error(ex)
                 await _clear_(query.message.chat.id)
                 return await pytgcalls.leave_group_call(query.message.chat.id)
-
+ 
             img = await gen_thumb(videoid, user_id)
             await query.edit_message_text(
-                text=f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🥺\n│ \n└ʙʏ : {query.from_user.mention} 🥀",
+                text=f"{query.from_user.mention} **tərəfindən növbəti musiqiyə keçid edildi**",
                 reply_markup=close_key,
             )
             return await query.message.reply_photo(
                 photo=img,
-                caption=f"**➻ sᴛᴀʀᴛᴇᴅ sᴛʀᴇᴀᴍɪɴɢ**\n\n‣ **ᴛɪᴛʟᴇ :** [{title[:27]}](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n‣ **ᴅᴜʀᴀᴛɪᴏɴ :** `{duration}` ᴍɪɴᴜᴛᴇs\n‣ **ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ :** {req_by}",
+                caption=f"🎵 **Başlıq:** [{title[:27]}](https://t.me/{BOT_USERNAME}?start=info_{videoid})\n⏳ **Müddət:** `{duration}`\n👤 **Tələb:** {req_by}",
                 reply_markup=buttons,
             )
-
-
+ 
+ 
 @app.on_callback_query(filters.regex("unban_ass"))
 async def unban_ass(_, CallbackQuery):
     callback_data = CallbackQuery.data.strip()
@@ -186,55 +169,55 @@ async def unban_ass(_, CallbackQuery):
             await app.unban_chat_member(int(chat_id), ASS_ID)
         except:
             return await CallbackQuery.answer(
-                "» ғᴀɪʟᴇᴅ ᴛᴏ ᴜɴʙᴀɴ ᴀssɪsᴛᴀɴᴛ.",
+                "Assistantı blokdan çıxarmaq alınmadı.",
                 show_alert=True,
             )
         return await CallbackQuery.edit_message_text(
-            f"➻ {ASS_NAME} sᴜᴄᴄᴇssғᴜʟʟʏ ᴜɴʙᴀɴɴᴇᴅ ʙʏ {CallbackQuery.from_user.mention}.\n\nᴛʀʏ ᴘʟᴀʏɪɴɢ ɴᴏᴡ..."
+            f"{ASS_NAME} **tərəfindən uğurla qadağası ləğv edildi** {CallbackQuery.from_user.mention}\n\n**İndi musiqi qoşmağa yenidən cəhd edin...**"
         )
     else:
         return await CallbackQuery.answer(
-            "» ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴘᴇʀᴍɪssɪᴏɴs ᴛᴏ ᴜɴʙᴀɴ ᴜsᴇʀs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.",
+            "Bu qrupda istifadəçilərin qadağasını ləğv etmək üçün ban yetkim yoxdur.",
             show_alert=True,
         )
-
-
+ 
+ 
 @app.on_callback_query(filters.regex("fallen_help"))
 async def help_menu(_, query: CallbackQuery):
     try:
         await query.answer()
     except:
         pass
-
+ 
     try:
         await query.edit_message_text(
-            text=f"๏ ʜᴇʏ {query.from_user.first_name}, 🥀\n\nᴘʟᴇᴀsᴇ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴘ.",
+            text=f"Salam {query.from_user.first_name}\n\nZəhmət olmasa kömək almaq istədiyiniz aşağıdakı düyməyə klikləyin.",
             reply_markup=InlineKeyboardMarkup(helpmenu),
         )
     except Exception as e:
         LOGGER.error(e)
         return
-
-
+ 
+ 
 @app.on_callback_query(filters.regex("fallen_cb"))
 async def open_hmenu(_, query: CallbackQuery):
     callback_data = query.data.strip()
     cb = callback_data.split(None, 1)[1]
     keyboard = InlineKeyboardMarkup(help_back)
-
+ 
     try:
         await query.answer()
     except:
         pass
-
+ 
     if cb == "help":
         await query.edit_message_text(HELP_TEXT, reply_markup=keyboard)
     elif cb == "sudo":
         await query.edit_message_text(HELP_SUDO, reply_markup=keyboard)
     elif cb == "owner":
         await query.edit_message_text(HELP_DEV, reply_markup=keyboard)
-
-
+ 
+ 
 @app.on_callback_query(filters.regex("fallen_home"))
 async def home_fallen(_, query: CallbackQuery):
     try:
@@ -251,3 +234,19 @@ async def home_fallen(_, query: CallbackQuery):
         )
     except:
         pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
