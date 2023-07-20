@@ -10,7 +10,7 @@ from FallenMusic import BOT_NAME, StartTime, app
 from FallenMusic.Helpers import get_readable_time
  
  
-@app.on_message(filters.command("ping"))
+@app.on_message(filters.command("ping", [".", "!", "/"]))
 async def ping_fallen(_, message: Message):
     hmm = await message.reply_photo(
         photo=config.PING_IMG, caption=f"{BOT_NAME} ping edir..."
@@ -24,8 +24,8 @@ async def ping_fallen(_, message: Message):
     uptime = get_readable_time((upt))
  
     await hmm.edit_text(
-        f"""👨🏻‍💻 Rahid: `{resp}ᴍs`
- 
+        f"""🎶 ᙭ᗩOՏ ᗰᑌՏİᑕ  : `{resp}ᴍs`
+        
 <b><u>{BOT_NAME} Sistem Statistikası:</u></b>
  
 ๏ **İş vaxtı:** {uptime}
@@ -38,7 +38,7 @@ async def ping_fallen(_, message: Message):
                     InlineKeyboardButton("💬 Söhbət Qrupu", url=config.SUPPORT_CHAT),
                     InlineKeyboardButton(
                         "👨🏻‍💻 Bot Sahibi",
-                        url="https://t.me/Rahid_7",
+                        url="https://t.me/sesizKOLGE",
                     ),
                 ],
             ]
