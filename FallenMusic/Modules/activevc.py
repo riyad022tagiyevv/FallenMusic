@@ -9,9 +9,9 @@ from FallenMusic.Helpers.active import get_active_chats
 from FallenMusic.Helpers.inline import close_key
  
  
-@app.on_message(filters.command("activevc") & SUDOERS)
+@app.on_message(filters.command("activevc", [".", "/", "!"]) & SUDOERS)
 async def activevc(_, message: Message):
-    mystic = await message.reply_text("Aktiv səsli qrupların siyahısı əldə edilir...")
+    mystic = await message.reply_text("♻️ Aktiv səsli qrupların siyahısı əldə edilir...")
     chats = await get_active_chats()
     text = ""
     j = 0
@@ -27,10 +27,10 @@ async def activevc(_, message: Message):
             text += f"<b>{j + 1}. {title}</b> [`{chat}`]\n"
         j += 1
     if not text:
-        await mystic.edit_text("Musiqi botunda aktiv səsli qrup yoxdur")
+        await mystic.edit_text("❌ Musiqi botunda aktiv səsli qrup yoxdur")
     else:
         await mystic.edit_text(
-            f"**Musiqi botunda hazırda aktiv səsli qrupların siyahısı:**\n\n{text}",
+            f"**📊 Musiqi botunda hazırda aktiv səsli qrupların siyahısı:**\n\n{text}",
             reply_markup=close_key,
             disable_web_page_preview=True,
         )
