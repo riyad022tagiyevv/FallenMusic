@@ -27,7 +27,11 @@ pm_buttons = [
             url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
         )
     ],
-    [InlineKeyboardButton(text="📚 Bot Əmrləri", callback_data="fallen_help")],
+ 
+    [
+        InlineKeyboardButton(text="📚 Bot Əmrləri", callback_data="fallen_help"),
+        InlineKeyboardButton(text="🤖 Multi Bot", url="https://t.me/XAOS_Tagbot"),  
+    ],
     [
         InlineKeyboardButton(text="📢 Kanal", url=config.SUPPORT_CHANNEL),
         InlineKeyboardButton(text="💬 Söhbət Qrupu", url=config.SUPPORT_CHAT),
