@@ -16,7 +16,7 @@ OWNER_ID = int(getenv("OWNER_ID", "5663585448"))
 PING_IMG = getenv("PING_IMG", "https://telegra.ph/file/b7939203c81ffee91e1a1.jpg")
 START_IMG = getenv("START_IMG", "https://telegra.ph/file/c3166102f1c949f1ea0f3.jpg")
 
-SESSION = getenv("SESSION", None)
+SESSION = getenv("SESSION", "AgB1WUkHScaE9rwJTy4fopo53UptazU-1HoYPaze0U3WHVaw-Q-x3PclMxAQVloXEX2fNs_GA9Wk1dAUtW-OwmoGPjHOblpr8kCXUvTlGwm5jimt-dTHzjcCqQC-uEUC5twLItQMZ2uqGg-0F4L8kBw8zKylD42yOF7Y1WEMPxSODP8hZfjviiTz3EaDW4SS6HDf1u-luO9qFE54kXyrErTJmTuNpB9gHKdhBNAz5bRfud3iIQioD40jAe3aI14wVGHn1xo4v7EyQs98OW4pJyKc8af6Tb7dx1tUP6Vx3wBXPBGrBY2rio3f_WLWdwqucoqklvjCVmejvDlR94yBi58VAAAAAYgARbMA")
 
 SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/Kayfina")
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/XaosResmi")
