@@ -30,7 +30,7 @@ pm_buttons = [
  
     [
         InlineKeyboardButton(text="📚 Bot Əmrləri", callback_data="fallen_help"),
-        InlineKeyboardButton(text="🤖 Multi Bot", url="https://t.me/NezrinChatBot"),  
+        InlineKeyboardButton(text="🤖 Chat Bot", url="https://t.me/NezrinChatBot"),  
     ],
     [
         InlineKeyboardButton(text="📢 Kanal", url=config.SUPPORT_CHANNEL),
@@ -40,7 +40,7 @@ pm_buttons = [
         InlineKeyboardButton(
             text="✅ Rəsmi Kanal", url="https://t.me/nezrinlogo"
         ),
-        InlineKeyboardButton(text="👨🏻‍💻 Bot Sahibi", user_id=config.OWNER_ID),
+        InlineKeyboardButton(text="🇬🇪 Kurucu", user_id=config.OWNER_ID),
     ],
 ]
  
@@ -58,9 +58,9 @@ gp_buttons = [
     ],
     [
         InlineKeyboardButton(
-            text="✅ Rəsmi Kanal", url="hhttps://t.me/Rahid_44"
+            text="✅ Rəsmi Kanal", url="hhttps://t.me/NezrinLogo"
         ),
-        InlineKeyboardButton(text="👨🏻‍💻 Bot Sahibi", user_id=config.OWNER_ID),
+        InlineKeyboardButton(text="🇬🇪 Kurucu", user_id=config.OWNER_ID),
     ],
 ]
  
@@ -74,7 +74,7 @@ helpmenu = [
     ],
     [
         InlineKeyboardButton(text="👥 Sudo Əmrləri", callback_data="fallen_cb sudo"),
-        InlineKeyboardButton(text="👨🏻‍💻 Sahib Əmrləri", callback_data="fallen_cb owner"),
+        InlineKeyboardButton(text="🇬🇪 Kurucu Əmrləri", callback_data="fallen_cb owner"),
     ],
     [
         InlineKeyboardButton(text="🔙 Geri", callback_data="fallen_home"),
