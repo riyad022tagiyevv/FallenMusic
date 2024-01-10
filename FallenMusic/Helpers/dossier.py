@@ -43,7 +43,7 @@ HELP_SUDO = f"""
 """
  
 HELP_DEV = f"""
-<u>👨🏻‍💻 **Sahib əmrləri {BOT_NAME}:**</u>
+<u>🇬🇪 **kurucu əmrləri {BOT_NAME}:**</u>
  
 /config - Botun bütün konfiqurasiya dəyişənlərini əldə etmək üçün.
 /broadcast [Mesaj göndərin və ya mesaja cavab verin] - Mesajı botun xidmət edilən çatlarına çatdırın.
