@@ -30,7 +30,7 @@ pm_buttons = [
  
     [
         InlineKeyboardButton(text="📚 Bot Əmrləri", callback_data="fallen_help"),
-        InlineKeyboardButton(text="🤖 Multi Bot", url="https://t.me/XAOS_Tagbot"),  
+        InlineKeyboardButton(text="🤖 Multi Bot", url="https://t.me/NezrinChatBot"),  
     ],
     [
         InlineKeyboardButton(text="📢 Kanal", url=config.SUPPORT_CHANNEL),
@@ -38,7 +38,7 @@ pm_buttons = [
     ],
     [
         InlineKeyboardButton(
-            text="✅ Rəsmi Kanal", url="https://t.me/XaosResmii"
+            text="✅ Rəsmi Kanal", url="https://t.me/nezrinlogo"
         ),
         InlineKeyboardButton(text="👨🏻‍💻 Bot Sahibi", user_id=config.OWNER_ID),
     ],
